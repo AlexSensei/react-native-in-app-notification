@@ -8,8 +8,8 @@ import DefaultNotificationBody from './DefaultNotificationBody';
 const styles = StyleSheet.create({
   notification: {
     position: 'absolute',
-    width: '100%',
-  },
+    width: '100%'
+  }
 });
 
 class Notification extends Component {
@@ -24,7 +24,7 @@ class Notification extends Component {
 
     this.state = {
       animatedValue: new Animated.Value(0),
-      isOpen: false,
+      isOpen: false
     };
   }
 
@@ -34,8 +34,8 @@ class Notification extends Component {
       message: '',
       onPress: null,
       icon: null,
-      vibrate: true,
-    },
+      vibrate: true
+    }
   ) {
     const { closeInterval } = this.props;
     const { isOpen } = this.state;
@@ -52,23 +52,24 @@ class Notification extends Component {
           message,
           onPress,
           icon,
-          vibrate,
+          vibrate
         },
-        () => this.showNotification(() => {
-          this.currentNotificationInterval = setTimeout(() => {
-            this.setState(
-              {
-                isOpen: false,
-                title: '',
-                message: '',
-                onPress: null,
-                icon: null,
-                vibrate: true,
-              },
-              this.closeNotification,
-            );
-          }, closeInterval);
-        }),
+        () =>
+          this.showNotification(() => {
+            this.currentNotificationInterval = setTimeout(() => {
+              this.setState(
+                {
+                  isOpen: false,
+                  title: '',
+                  message: '',
+                  onPress: null,
+                  icon: null,
+                  vibrate: true
+                },
+                this.closeNotification
+              );
+            }, closeInterval);
+          })
       );
     };
 
@@ -84,14 +85,14 @@ class Notification extends Component {
   showNotification(done) {
     Animated.timing(this.state.animatedValue, {
       toValue: 1,
-      duration: this.props.openCloseDuration,
+      duration: this.props.openCloseDuration
     }).start(done);
   }
 
   closeNotification(done) {
     Animated.timing(this.state.animatedValue, {
       toValue: 0,
-      duration: this.props.openCloseDuration,
+      duration: this.props.openCloseDuration
     }).start(done);
   }
 
@@ -101,7 +102,7 @@ class Notification extends Component {
       topOffset,
       backgroundColour,
       iconApp,
-      notificationBodyComponent: NotificationBody,
+      notificationBodyComponent: NotificationBody
     } = this.props;
 
     const { animatedValue, title, message, onPress, isOpen, icon, vibrate } = this.state;
@@ -118,11 +119,11 @@ class Notification extends Component {
               {
                 translateY: animatedValue.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [-height + topOffset, 0],
-                }),
-              },
-            ],
-          },
+                  outputRange: [-height + topOffset, 0]
+                })
+              }
+            ]
+          }
         ]}
       >
         <NotificationBody
@@ -133,6 +134,7 @@ class Notification extends Component {
           iconApp={iconApp}
           icon={icon}
           vibrate={vibrate}
+          {...props}
           onClose={() => this.setState({ isOpen: false }, this.closeNotification)}
         />
       </Animated.View>
@@ -147,7 +149,7 @@ Notification.propTypes = {
   topOffset: PropTypes.number,
   backgroundColour: PropTypes.string,
   notificationBodyComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  iconApp: Image.propTypes.source,
+  iconApp: Image.propTypes.source
 };
 
 Notification.defaultProps = {
@@ -157,7 +159,7 @@ Notification.defaultProps = {
   topOffset: 0,
   backgroundColour: 'white',
   notificationBodyComponent: DefaultNotificationBody,
-  iconApp: null,
+  iconApp: null
 };
 
 export default Notification;
