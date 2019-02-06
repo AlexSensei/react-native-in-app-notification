@@ -65,6 +65,11 @@ For Android you need to add the `VIBRATE` permission to your app `AndroidManifes
 | height                    | The height of the Notification component            | Number                 | No          | `80`                        |
 | backgroundColour          | The background colour of the Notification component | String                 | No          | `white`                     |
 | iconApp                   | App Icon                                            | ImageSourcePropType    | No          | `null`                      |
+|touchStyle                 | Styles for touchable opacity wraper                 | Style                  | No          | `null`                      |
+|iconWraperStyle            | Styles for icon wraper .                            | Style                  | No          | `null`                      |                   |
+|textStyle                  | Styles for text wraper around title and message     | Style                  | No          | `null`                      |
+|titleStyle                 | Styles for title text                               | Style                  | No          | `null`                      |
+|messageStyle               | Styles for message text                             | Style                  | No          | `null`                      |
 | notificationBodyComponent | **See below about NotificationBody**                | React Node or Function | Recommended | `./DefaultNotificationBody` |
 
 ### NotificationBody
