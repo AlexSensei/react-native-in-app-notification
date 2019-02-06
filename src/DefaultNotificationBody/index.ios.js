@@ -7,18 +7,18 @@ import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures'
 const styles = {
   root: {
     flex: 1,
-    backgroundColor: '#050505',
+    backgroundColor: '#050505'
   },
   container: {
     position: 'absolute',
-    top: isIphoneX() && getStatusBarHeight(),
+    top: isIphoneX() ? getStatusBarHeight() : 0,
     bottom: 0,
     left: 0,
-    right: 0,
+    right: 0
   },
   content: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   iconApp: {
     marginTop: 10,
@@ -26,26 +26,26 @@ const styles = {
     resizeMode: 'contain',
     width: 24,
     height: 24,
-    borderRadius: 5,
+    borderRadius: 5
   },
   icon: {
     marginTop: 10,
     marginLeft: 10,
     resizeMode: 'contain',
     width: 48,
-    height: 48,
+    height: 48
   },
   textContainer: {
     alignSelf: 'center',
-    marginLeft: 20,
+    marginLeft: 20
   },
   title: {
     color: '#FFF',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   message: {
     color: '#FFF',
-    marginTop: 5,
+    marginTop: 5
   },
   footer: {
     backgroundColor: '#696969',
@@ -53,8 +53,8 @@ const styles = {
     alignSelf: 'center',
     height: 5,
     width: 35,
-    margin: 5,
-  },
+    margin: 5
+  }
 };
 
 class DefaultNotificationBody extends React.Component {
@@ -76,10 +76,7 @@ class DefaultNotificationBody extends React.Component {
   }
 
   onNotificationPress() {
-    const {
-      onPress,
-      onClose,
-    } = this.props;
+    const { onPress, onClose } = this.props;
 
     onClose();
     onPress();
@@ -94,39 +91,37 @@ class DefaultNotificationBody extends React.Component {
   }
 
   renderIcon() {
-    const {
-      iconApp,
-      icon,
-    } = this.props;
+    const { iconApp, icon, iconStyle } = this.props;
 
     if (icon) {
-      return <Image source={icon} style={styles.icon} />;
+      return <Image source={icon} style={iconStyle ? iconStyle : styles.icon} />;
     } else if (iconApp) {
-      return <Image source={iconApp} style={styles.iconApp} />;
+      return <Image source={iconApp} style={iconStyle ? iconStyle : styles.iconApp} />;
     }
 
     return null;
   }
 
   render() {
-    const {
-      title,
-      message,
-    } = this.props;
+    const { title, message, touchStyle, textStyle, titleStyle, messageStyle } = this.props;
 
     return (
       <View style={styles.root}>
         <GestureRecognizer onSwipe={this.onSwipe} style={styles.container}>
           <TouchableOpacity
-            style={styles.content}
+            style={touchStyle ? touchStyle : styles.content}
             activeOpacity={0.3}
             underlayColor="transparent"
             onPress={this.onNotificationPress}
           >
             {this.renderIcon()}
-            <View style={styles.textContainer}>
-              <Text numberOfLines={1} style={styles.title}>{title}</Text>
-              <Text numberOfLines={1} style={styles.message}>{message}</Text>
+            <View style={textStyle ? textStyle : styles.textContainer}>
+              <Text numberOfLines={1} style={titleStyle ? titleStyle : styles.title}>
+                {title}
+              </Text>
+              <Text numberOfLines={1} style={messageStyle ? messageStyle : styles.message}>
+                {message}
+              </Text>
             </View>
           </TouchableOpacity>
 
@@ -145,7 +140,7 @@ DefaultNotificationBody.propTypes = {
   onPress: PropTypes.func,
   onClose: PropTypes.func,
   iconApp: Image.propTypes.source,
-  icon: Image.propTypes.source,
+  icon: Image.propTypes.source
 };
 
 DefaultNotificationBody.defaultProps = {
@@ -156,7 +151,7 @@ DefaultNotificationBody.defaultProps = {
   iconApp: null,
   icon: null,
   onPress: () => null,
-  onClose: () => null,
+  onClose: () => null
 };
 
 export default DefaultNotificationBody;

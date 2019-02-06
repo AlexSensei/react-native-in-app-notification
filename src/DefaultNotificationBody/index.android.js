@@ -5,35 +5,35 @@ import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures'
 
 const styles = {
   container: {
-    flex: 1,
+    flex: 1
   },
   content: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   iconContainer: {
     width: 60,
     height: 70,
     marginTop: 5,
-    marginLeft: 10,
+    marginLeft: 10
   },
   icon: {
     resizeMode: 'contain',
     width: 60,
-    height: 70,
+    height: 70
   },
   textContainer: {
     alignSelf: 'center',
-    marginLeft: 20,
+    marginLeft: 20
   },
   title: {
     color: '#000',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   message: {
     color: '#000',
-    marginTop: 5,
-  },
+    marginTop: 5
+  }
 };
 
 class DefaultNotificationBody extends React.Component {
@@ -51,10 +51,7 @@ class DefaultNotificationBody extends React.Component {
   }
 
   onNotificationPress() {
-    const {
-      onPress,
-      onClose,
-    } = this.props;
+    const { onPress, onClose } = this.props;
 
     onClose();
     onPress();
@@ -75,22 +72,33 @@ class DefaultNotificationBody extends React.Component {
       message,
       iconApp,
       icon,
+      touchStyle,
+      iconStyle,
+      textStyle,
+      titleStyle,
+      messageStyle
     } = this.props;
 
     return (
       <GestureRecognizer onSwipe={this.onSwipe} style={styles.container}>
         <TouchableOpacity
-          style={styles.content}
+          style={touchStyle ? touchStyle : styles.content}
           activeOpacity={0.3}
           underlayColor="transparent"
           onPress={this.onNotificationPress}
         >
           <View style={styles.iconContainer}>
-            {(icon || iconApp) && <Image source={icon || iconApp} style={styles.icon} />}
+            {(icon || iconApp) && (
+              <Image source={icon || iconApp} style={iconStyle ? iconStyle : styles.icon} />
+            )}
           </View>
-          <View style={styles.textContainer}>
-            <Text numberOfLines={1} style={styles.title}>{title}</Text>
-            <Text numberOfLines={1} style={styles.message}>{message}</Text>
+          <View style={textStyle ? textStyle : styles.textContainer}>
+            <Text numberOfLines={1} style={titleStyle ? titleStyle : styles.title}>
+              {title}
+            </Text>
+            <Text numberOfLines={1} style={messageStyle ? messageStyle : styles.message}>
+              {message}
+            </Text>
           </View>
         </TouchableOpacity>
       </GestureRecognizer>
@@ -106,7 +114,7 @@ DefaultNotificationBody.propTypes = {
   onPress: PropTypes.func,
   onClose: PropTypes.func,
   iconApp: Image.propTypes.source,
-  icon: Image.propTypes.source,
+  icon: Image.propTypes.source
 };
 
 DefaultNotificationBody.defaultProps = {
@@ -117,7 +125,7 @@ DefaultNotificationBody.defaultProps = {
   iconApp: null,
   icon: null,
   onPress: () => null,
-  onClose: () => null,
+  onClose: () => null
 };
 
 export default DefaultNotificationBody;
