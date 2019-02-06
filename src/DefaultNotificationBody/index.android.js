@@ -74,6 +74,7 @@ class DefaultNotificationBody extends React.Component {
       icon,
       touchStyle,
       iconStyle,
+      iconWraperStyle,
       textStyle,
       titleStyle,
       messageStyle
@@ -87,7 +88,7 @@ class DefaultNotificationBody extends React.Component {
           underlayColor="transparent"
           onPress={this.onNotificationPress}
         >
-          <View style={styles.iconContainer}>
+          <View style={iconWraperStyle ? iconWraperStyle : styles.iconContainer}>
             {(icon || iconApp) && (
               <Image source={icon || iconApp} style={iconStyle ? iconStyle : styles.icon} />
             )}

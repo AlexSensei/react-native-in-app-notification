@@ -103,7 +103,15 @@ class DefaultNotificationBody extends React.Component {
   }
 
   render() {
-    const { title, message, touchStyle, textStyle, titleStyle, messageStyle } = this.props;
+    const {
+      title,
+      message,
+      touchStyle,
+      textStyle,
+      titleStyle,
+      messageStyle,
+      iconWraperStyle
+    } = this.props;
 
     return (
       <View style={styles.root}>
@@ -114,7 +122,9 @@ class DefaultNotificationBody extends React.Component {
             underlayColor="transparent"
             onPress={this.onNotificationPress}
           >
-            {this.renderIcon()}
+            <View style={iconWraperStyle ? iconWraperStyle : styles.iconContainer}>
+              {this.renderIcon()}
+            </View>
             <View style={textStyle ? textStyle : styles.textContainer}>
               <Text numberOfLines={1} style={titleStyle ? titleStyle : styles.title}>
                 {title}

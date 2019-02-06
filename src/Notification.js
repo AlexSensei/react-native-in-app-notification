@@ -104,6 +104,7 @@ class Notification extends Component {
       iconApp,
       touchStyle,
       iconStyle,
+      iconWraperStyle,
       textStyle,
       titleStyle,
       messageStyle,
@@ -141,6 +142,7 @@ class Notification extends Component {
           vibrate={vibrate}
           touchStyle={touchStyle}
           iconStyle={iconStyle}
+          iconWraperStyle={iconWraperStyle}
           textStyle={textStyle}
           titleStyle={titleStyle}
           messageStyle={messageStyle}
