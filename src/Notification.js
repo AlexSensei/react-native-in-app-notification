@@ -102,6 +102,11 @@ class Notification extends Component {
       topOffset,
       backgroundColour,
       iconApp,
+      touchStyle,
+      iconStyle,
+      textStyle,
+      titleStyle,
+      messageStyle,
       notificationBodyComponent: NotificationBody
     } = this.props;
 
@@ -134,7 +139,11 @@ class Notification extends Component {
           iconApp={iconApp}
           icon={icon}
           vibrate={vibrate}
-          {...props}
+          touchStyle={touchStyle}
+          iconStyle={iconStyle}
+          textStyle={textStyle}
+          titleStyle={titleStyle}
+          messageStyle={messageStyle}
           onClose={() => this.setState({ isOpen: false }, this.closeNotification)}
         />
       </Animated.View>
