@@ -97,7 +97,7 @@ class DefaultNotificationBody extends React.Component {
             <Text numberOfLines={1} style={titleStyle ? titleStyle : styles.title}>
               {title}
             </Text>
-            <Text numberOfLines={1} style={messageStyle ? messageStyle : styles.message}>
+            <Text numberOfLines={2} style={messageStyle ? messageStyle : styles.message}>
               {message}
             </Text>
           </View>
