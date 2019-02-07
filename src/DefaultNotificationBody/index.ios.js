@@ -7,7 +7,7 @@ import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures'
 const styles = {
   root: {
     flex: 1,
-    backgroundColor: '#050505'
+    backgroundColor: 'transparent'
   },
   container: {
     position: 'absolute',
