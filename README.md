@@ -70,6 +70,7 @@ For Android you need to add the `VIBRATE` permission to your app `AndroidManifes
 |textStyle                  | Styles for text wraper around title and message     | Style                  | No          | `null`                      |
 |titleStyle                 | Styles for title text                               | Style                  | No          | `null`                      |
 |messageStyle               | Styles for message text                             | Style                  | No          | `null`                      |
+|iconStyle .                | Styles for icon                                     | Style                  | No          | `null`                      |
 | notificationBodyComponent | **See below about NotificationBody**                | React Node or Function | Recommended | `./DefaultNotificationBody` |
 
 ### NotificationBody
