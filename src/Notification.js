@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, StyleSheet, Image } from 'react-native';
+import { Animated, StyleSheet, Image,View } from 'react-native';
 import { getStatusBarHeight, isIphoneX } from 'react-native-iphone-x-helper';
 
 import DefaultNotificationBody from './DefaultNotificationBody';
@@ -116,6 +116,7 @@ class Notification extends Component {
     const height = baseHeight + this.heightOffset;
 
     return (
+      title ?
       <Animated.View
         style={[
           styles.notification,
@@ -148,7 +149,7 @@ class Notification extends Component {
           messageStyle={messageStyle}
           onClose={() => this.setState({ isOpen: false }, this.closeNotification)}
         />
-      </Animated.View>
+      </Animated.View> : <View />
     );
   }
 }
